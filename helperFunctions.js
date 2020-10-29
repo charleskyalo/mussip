@@ -17,19 +17,50 @@ const renderResponse = (res) => {
 
     let wordList = [];
 
-    for (let i = 0; i < Math.min(res.length, 10); i++) {
+    for (let i = 0; i < res.length; i++) {
 
         // create a world list;
         wordList.push(`<li>${res[i].word}</li>`);
     }
     /* join the strings into one word */
     wordList = wordList.join("");
-    console.log(wordList);
-
     /* manipulate response field to render modified response */
     rhymeOutput.innerHTML = `
-    <p> you might be interested in:</p>
+    <p> The words which rhyme with ${inputField.value} are :</p>
     <ol>${wordList}</ol>`;
     return
 
 }
+
+// detect online  ofline status status
+
+function hasNetwork(online) {
+    const element = document.querySelector(".status");
+    // Update the DOM to reflect the current status
+    if (online) {
+        element.classList.remove("offline");
+        element.classList.add("online");
+        element.innerText = "Online";
+    } else {
+        element.classList.remove("online");
+        element.classList.add("offline");
+        element.innerText = "Offline";
+    }
+}
+
+
+
+
+window.addEventListener("load", () => {
+    hasNetwork(navigator.onLine);
+
+    window.addEventListener("online", () => {
+        // Set hasNetwork to online when they change to online.
+        hasNetwork(true);
+    });
+
+    window.addEventListener("offline", () => {
+        // Set hasNetwork to offline when they change to offline.
+        hasNetwork(false);
+    });
+});
