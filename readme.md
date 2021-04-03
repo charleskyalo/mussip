@@ -1,6 +1,7 @@
 
 <!-- name -->
-# mussip 🎼
+# [mussip 🎼](https://charleskyalo.github.io/mussip/)
+
 <!-- description usage -->
 
 ### mussip allows you to search for words that rhyme.
